@@ -23,10 +23,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="my-icons.html">
 
 <dom-module id="my-app">
-  <template>
+    <template>
     <style>
       :host {
-        --app-primary-color: #4285f4;
+        --app-primary-color: red;
         --app-secondary-color: black;
 
         display: block;
@@ -87,7 +87,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>My App</div>
+
+            <div main-title >
+              <div id="driftlogo">
+                              <a href="index.html">
+                                  <!-- <img id="navlogo" src="images/toolbar/DRIFT Logo 72ppi.png" /> -->
+
+                                  <img id="spinnerlogo" src="images/toolbar/DRIFT Logo 72ppi.png" onmouseover="hover(this);" onmouseout="unhover(this);">
+                                  <script type="text/javascript">
+                                      function hover(element) {
+                                          element.setAttribute('src', 'images/toolbar/spinnerlogo.gif');
+                                      }
+
+                                      function unhover(element) {
+                                          element.setAttribute('src', 'images/toolbar/DRIFT Logo 72ppi.png');
+                                      }
+                                  </script>
+                                  <style>
+                                    #driftlogo , #spinnerlogo , #navlogo {
+                                      max-height: 50px;
+                                      max-width: inherit;
+                                    }
+                                  </style>
+                              </a>
+
+                          </div>
+             </div>
+            <div spacer></div>
+            <paper-icon-button icon="search"></paper-icon-button>
           </app-toolbar>
         </app-header>
 
@@ -105,59 +132,61 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </app-drawer-layout>
   </template>
 
-  <script>
-    class MyApp extends Polymer.Element {
+    <script>
+        class MyApp extends Polymer.Element {
 
-      static get is() { return 'my-app'; }
+            static get is() {
+                return 'my-app';
+            }
 
-      static get properties() {
-        return {
-          page: {
-            type: String,
-            reflectToAttribute: true,
-            observer: '_pageChanged',
-          },
-        };
-      }
+            static get properties() {
+                return {
+                    page: {
+                        type: String,
+                        reflectToAttribute: true,
+                        observer: '_pageChanged',
+                    },
+                };
+            }
 
-      static get observers() {
-        return [
-          '_routePageChanged(routeData.page)',
-        ];
-      }
+            static get observers() {
+                return [
+                    '_routePageChanged(routeData.page)',
+                ];
+            }
 
-      _routePageChanged(page) {
-        // Polymer 2.0 will call with `undefined` on initialization.
-        // Ignore until we are properly called with a string.
-        if (page === undefined) {
-          return;
+            _routePageChanged(page) {
+                // Polymer 2.0 will call with `undefined` on initialization.
+                // Ignore until we are properly called with a string.
+                if (page === undefined) {
+                    return;
+                }
+
+                // If no page was found in the route data, page will be an empty string.
+                // Deault to 'view1' in that case.
+                this.page = page || 'view1';
+
+                // Close a non-persistent drawer when the page & route are changed.
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
+                }
+            }
+
+            _pageChanged(page) {
+                // Load page import on demand. Show 404 page if fails
+                var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
+                Polymer.importHref(
+                    resolvedPageUrl,
+                    null,
+                    this._showPage404.bind(this),
+                    true);
+            }
+
+            _showPage404() {
+                this.page = 'view404';
+            }
         }
 
-        // If no page was found in the route data, page will be an empty string.
-        // Deault to 'view1' in that case.
-        this.page = page || 'view1';
-
-        // Close a non-persistent drawer when the page & route are changed.
-        if (!this.$.drawer.persistent) {
-          this.$.drawer.close();
-        }
-      }
-
-      _pageChanged(page) {
-        // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
-        Polymer.importHref(
-            resolvedPageUrl,
-            null,
-            this._showPage404.bind(this),
-            true);
-      }
-
-      _showPage404() {
-        this.page = 'view404';
-      }
-    }
-
-    window.customElements.define(MyApp.is, MyApp);
-  </script>
+        window.customElements.define(MyApp.is, MyApp);
+    </script>
 </dom-module>
