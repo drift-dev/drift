@@ -1,0 +1,104 @@
+{
+  "users":
+  {
+    "user-id-1":
+    {
+      "first-name":"awesome",
+      "last-name":"dude",
+      "mobile-number":"0501234567",
+      "email":"awesomedude@drift.racing",
+      "profile-picture-src":"link-to-other-database",
+      "settings":
+      {
+        "push-notification":"true"
+      },
+      "parts":
+      {
+        "part-standard-name":"a-arms-2017",
+        "part-year":"2017",
+        "part-link-in-database":"generated relative adress based on part-standard-name"
+      },
+
+      "access-level":"1-4 number , 1 has global access,4 individual access",
+      "team":"the name of team they're a part of"
+
+    }
+  }
+  "lexicon":
+  [
+  {
+    "lexicon-item1-name":"lexicon-item-content"
+  },
+  {
+    "lexicon-item2-name":"lexicon-item-content"
+  }],
+  {
+    "bill-of-materials":
+    {
+      "br":
+      {
+        "assemblies":
+        {
+          "description":"description of the assembly",
+          "sub-assemblies":
+          {
+            "description":"description of the sub-assembly (singular-the smallest that could be called an assembly)",
+            "assembly-standard-name":"according to naming convention we've set",
+            "parts":
+              {
+                    "part-id":
+                    {
+                      "part-standard-name":"(notice is same as in user's parts list), according to naming convention",
+                      "part-description":"where,who,why,how much",
+                      "year-of-production":"2017",
+                      "dimensions":
+                      {
+                        "height-in-mm":"314",
+                        "mass-in-grams":"200",
+                        "width-in-mm":"20",
+                        "other":{"user-entered value":"456","user-entered-unit":"mPa"}
+                      },
+                      "part-file-links":
+                      [
+                        {
+                        "link-name":"somename",
+                        "link-description":"an awesome part",
+                        "link-url":"https://other-database.somewhere/1"
+                        },
+                        {
+                        "link-name":"some other name",
+                        "link-description":"a SUPER awesome part",
+                        "link-url":"https://other-database.somewhere/2"
+                        }
+                      ],
+                      "part-photo-links":
+                      [
+                        {
+                        "photo-link-name":"somename",
+                        "photo-link-description":"an awesome part photo",
+                        "photo-link-url":"https://other-database.somewhere/1"
+                        },
+                        {
+                        "photo-link-name":"some other name",
+                        "photo-link-description":"a SUPER awesome part photo",
+                        "photo-link-url":"https://other-database.somewhere/2"
+                        }
+                      ],
+                      "users":
+                      {
+                       "user-id-1":"text description of contribution to the part",
+                       "user-id-2":"text description of contribution to the part"
+                      }
+                    },
+
+
+                    "part-id2":{}
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+}
