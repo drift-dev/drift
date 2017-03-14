@@ -1,0 +1,36 @@
+{
+  "name": "DRIFT",
+  "short_name": "DRIFT",
+  "start_url": "/?homescreen=1",
+  "scope": "/DRIFT/Pre-Build/drift/pwatry1/build/default/",
+  "display": "standalone",
+  "theme_color": "#FF0000",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "images/manifest/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "images/manifest/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "images/manifest/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "images/manifest/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/manifest/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
